@@ -7,17 +7,20 @@ public class GameScene : MonoBehaviour
     public GameObject _snakePrefab;
     public GameObject _slimePrefab;
     public GameObject _goblinePrefab;
+    public GameObject _joystickPrefab;
 
     GameObject _snake;
     GameObject _slime;
     GameObject _goblin;
+    GameObject _joystick;
 
-    // Start is called before the first frame update
     void Start()
     {
         _snake = GameObject.Instantiate(_snakePrefab);
         _slime = GameObject.Instantiate(_slimePrefab);
         _goblin = GameObject.Instantiate(_goblinePrefab);
+        _joystick = GameObject.Instantiate(_joystickPrefab);
+        
 
         GameObject go = new GameObject() { name = "@Monsters" };
         _snake.transform.parent = go.transform;
@@ -30,9 +33,10 @@ public class GameScene : MonoBehaviour
         _slime.AddComponent<PlayerController>();
 
         Camera.main.GetComponent<CameraController>().Target = _slime;
+
+        _joystick.name = "@UI_Joystick";
     }
 
-    // Update is called once per frame
     void Update()
     {
         
