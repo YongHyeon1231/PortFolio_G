@@ -15,44 +15,28 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        
+        Managers.Game.onMoveDirChanged += HandleOnMoveDirChanged;
+    }
+
+    void OnDestroy()
+    {
+        if (Managers.Game != null)
+            Managers.Game.onMoveDirChanged -= HandleOnMoveDirChanged;
+    }
+
+    void HandleOnMoveDirChanged(Vector2 dir)
+    {
+        _moveDir = dir;
     }
 
     void Update()
     {
-        //UpdateInput();
         MovePlayer();
-    }
-
-    // Device Simulatorø°º≠ ∏‘≈Î
-    void UpdateInput()
-    {
-        Vector2 moveDir = Vector2.zero;
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            moveDir.y += 1;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            moveDir.y -= 1;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            moveDir.x -= 1;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            moveDir.x += 1;
-        }
-
-        _moveDir = moveDir.normalized;
     }
 
     void MovePlayer()
     {
-        // TEMP2
-        _moveDir = Managers.MoveDir;
+        // _moveDir = Managers.Game.MoveDir;
 
         Vector3 dir = _moveDir * _speed * Time.deltaTime;
         transform.position += dir;
