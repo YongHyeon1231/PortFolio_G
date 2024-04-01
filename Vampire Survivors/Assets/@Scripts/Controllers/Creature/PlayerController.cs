@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : CreatureController
 {
     Vector2 _moveDir = Vector2.zero;
     float _speed = 5.0f;
@@ -40,5 +40,24 @@ public class PlayerController : MonoBehaviour
 
         Vector3 dir = _moveDir * _speed * Time.deltaTime;
         transform.position += dir;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collsion)
+    {
+        MonsterController target = collsion.gameObject.GetComponent<MonsterController>();
+        if (target == null)
+            return;
+
+    }
+
+    public override void OnDamaged(BaseController attacker, int damage)
+    {
+        base.OnDamaged(attacker, damage);
+
+        Debug.Log($"OnDamaged ! {Hp}");
+
+        // TEMP 풀링을 위해 간단하게 넣어놨습니다.
+        CreatureController cc = attacker as CreatureController;
+        cc?.OnDamaged(this, 10000);
     }
 }

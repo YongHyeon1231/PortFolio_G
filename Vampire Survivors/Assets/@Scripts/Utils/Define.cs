@@ -1,4 +1,4 @@
-public class Define
+public static class Define
 {
     public enum Scene
     {
@@ -11,5 +11,13 @@ public class Define
     {
         Bgm,
         Effect,
+    }
+
+    public enum ObjectType
+    {
+        Player,
+        Monster,
+        Projectile,
+        Env,
     }
 }

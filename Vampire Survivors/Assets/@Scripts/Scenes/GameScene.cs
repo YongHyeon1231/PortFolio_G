@@ -19,11 +19,20 @@ public class GameScene : MonoBehaviour
 
     void StartLoaded()
     {
-        GameObject prefab = Managers.Resource.Load<GameObject>("Slime_01.prefab");
+        var player = Managers.Object.Spawn<PlayerController>();
 
-        GameObject go = new GameObject() { name = "@Monsters" };
+        for (int i = 0; i < 100; i++)
+        {
+            MonsterController mc = Managers.Object.Spawn<MonsterController>(Random.Range(0,2));
+            mc.transform.position = new Vector2(Random.Range(-10, 10), Random.Range(-10, 10));
+        }
 
-        Camera.main.GetComponent<CameraController>().Target = prefab;
+        var joystick = Managers.Resource.Instantiate("UI_Joystick.prefab");
+        joystick.name = "@UI_Joystick";
+
+        var map = Managers.Resource.Instantiate("Map.prefab");
+        map.name = "@Map";
+        Camera.main.GetComponent<CameraController>().Target = player.gameObject;
     }
 
     void Update()
