@@ -33,6 +33,8 @@ public class MonsterController : CreatureController
         PlayerController target = collision.gameObject.GetComponent<PlayerController>();
         if (target == null)
             return;
+        if (target.isActiveAndEnabled == false)
+            return;
 
         if (_coDotDamage != null)
             StopCoroutine(_coDotDamage);
@@ -44,6 +46,8 @@ public class MonsterController : CreatureController
     {
         PlayerController target = collision.gameObject.GetComponent<PlayerController>();
         if (target == null)
+            return;
+        if (target.isActiveAndEnabled == false)
             return;
 
         if (_coDotDamage != null)

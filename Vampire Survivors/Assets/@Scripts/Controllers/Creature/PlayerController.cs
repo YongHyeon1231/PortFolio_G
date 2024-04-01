@@ -47,7 +47,8 @@ public class PlayerController : CreatureController
         MonsterController target = collsion.gameObject.GetComponent<MonsterController>();
         if (target == null)
             return;
-
+        if (target.isActiveAndEnabled == false)
+            return;
     }
 
     public override void OnDamaged(BaseController attacker, int damage)

@@ -17,14 +17,18 @@ public class GameScene : MonoBehaviour
         });
     }
 
+    SpawningPool _spawningPool;
+
     void StartLoaded()
     {
+        _spawningPool = gameObject.AddComponent<SpawningPool>();
+
         var player = Managers.Object.Spawn<PlayerController>();
 
         for (int i = 0; i < 100; i++)
         {
             MonsterController mc = Managers.Object.Spawn<MonsterController>(Random.Range(0,2));
-            mc.transform.position = new Vector2(Random.Range(-10, 10), Random.Range(-10, 10));
+            mc.transform.position = new Vector2(Random.Range(-50, 50), Random.Range(-50, 50));
         }
 
         var joystick = Managers.Resource.Instantiate("UI_Joystick.prefab");
