@@ -21,27 +21,32 @@ MonoBehaviour:
     m_Address: Slime_01.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Prefabs
+    - PreLoad
   - m_GUID: c9d1d7856708ffa49ae0c1890a84bc97
     m_Address: Ludo 0.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Prefabs
+    - PreLoad
   - m_GUID: 6becd73abb0c3d74bb945a9bac6e9eb9
     m_Address: Luna 0.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Prefabs
+    - PreLoad
   - m_GUID: 5d5ffd3d618555f49af1c4c3bc6a2221
     m_Address: Snake_01.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Prefabs
+    - PreLoad
   - m_GUID: 55244d19030214148af6fc0a65e1c0da
     m_Address: Goblin_01.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Prefabs
+    - PreLoad
+  - m_GUID: 803c05dd613598a40af243503e180385
+    m_Address: EXPGem.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 72709f7e6a53a48439d05a7e9e5c6a83, type: 2}
   m_SchemaSet:

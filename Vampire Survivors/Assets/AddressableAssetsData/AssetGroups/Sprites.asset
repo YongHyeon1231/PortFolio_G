@@ -10,15 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Map
+  m_Name: Sprites
   m_EditorClassIdentifier: 
-  m_GroupName: Map
+  m_GroupName: Sprites
   m_Data:
     m_SerializedData: []
-  m_GUID: d9ee6a739e1cb7b4d98faaa027224337
+  m_GUID: cade1e6134e5bb443bd2676e5b54a0e5
   m_SerializeEntries:
-  - m_GUID: 1cf04b2bfe6374a48b4b473796aaebfd
-    m_Address: Map.prefab
+  - m_GUID: 66639791c253f4748be2c8179a532b5a
+    m_Address: EXPGem_03.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+  - m_GUID: 2edaf735f2138b247b28e0bfecaddb6d
+    m_Address: EXPGem_01.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+  - m_GUID: b6862e2de9956a942b572a0806080e18
+    m_Address: EXPGem_02.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad
@@ -26,5 +36,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 72709f7e6a53a48439d05a7e9e5c6a83, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 5879a2ad2250c204484426cc2b82ec2a, type: 2}
-    - {fileID: 11400000, guid: 6b0288501a1003a42b4dec96b5674a68, type: 2}
+    - {fileID: 11400000, guid: 56dba2bafab15da41b970655f61ccfbc, type: 2}
+    - {fileID: 11400000, guid: d158a20896bc5bc448de501fadc59480, type: 2}

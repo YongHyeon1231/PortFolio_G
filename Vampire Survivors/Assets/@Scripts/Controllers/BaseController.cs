@@ -16,14 +16,19 @@ public class BaseController : MonoBehaviour
     public virtual bool Init()
     {
         if (_init)
-            return false;
+            return true;
 
         _init = true;
-        return true;
+        return false;
     }
 
     void Update()
     {
-        
+        UpdateController();
+    }
+
+    public virtual void UpdateController()
+    {
+
     }
 }

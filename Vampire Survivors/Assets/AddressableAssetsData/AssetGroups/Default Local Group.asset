@@ -16,12 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 7582b9640f4f6544d99b3dd83e68a916
-  m_SerializeEntries:
-  - m_GUID: 7f828b5a129af1c49b08ac31d1c2f0a6
-    m_Address: Assets/@Resources/Data/PlayerData.xml
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Data
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 72709f7e6a53a48439d05a7e9e5c6a83, type: 2}
   m_SchemaSet:

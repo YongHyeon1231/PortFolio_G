@@ -75,6 +75,9 @@ public class MonsterController : CreatureController
             StopCoroutine(_coDotDamage);
         _coDotDamage = null;
 
+        // 죽을 때 보석 스폰
+        GemController gc = Managers.Object.Spawn<GemController>(transform.position);
+
         Managers.Object.Despawn(this);
     }
 }
