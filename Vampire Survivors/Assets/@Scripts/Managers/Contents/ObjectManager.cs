@@ -77,6 +77,22 @@ public class ObjectManager
 
             return pc as T;
         }
+        else if (typeof(T).IsSubclassOf(typeof(SkillController)))
+        {
+            if (Managers.Data.SkillDic.TryGetValue(templateID, out Data.SkillData skillData) == false)
+            {
+                Debug.LogError($"ObjectManager Spawn Skill Failed {templateID}");
+                return null;
+            }
+
+            GameObject go = Managers.Resource.Instantiate(skillData.prefab, pooling: true);
+            go.transform.position = position;
+
+            T t = go.GetComponent<T>();
+            t.Init();
+
+            return t;
+        }
 
         return null;
     }

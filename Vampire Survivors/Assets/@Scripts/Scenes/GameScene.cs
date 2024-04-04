@@ -27,16 +27,10 @@ public class GameScene : MonoBehaviour
 
         var player = Managers.Object.Spawn<PlayerController>(Vector3.zero);
 
-        for (int i = 0; i < 100; i++)
-        {
-            Vector3 randPos = new Vector2(Random.Range(-50, 50), Random.Range(-50, 50));
-            MonsterController mc = Managers.Object.Spawn<MonsterController>(randPos, Random.Range(0,2));
-        }
-
         var joystick = Managers.Resource.Instantiate("UI_Joystick.prefab");
         joystick.name = "@UI_Joystick";
 
-        var map = Managers.Resource.Instantiate("Map.prefab");
+        var map = Managers.Resource.Instantiate("@Map.prefab");
         map.name = "@Map";
         Camera.main.GetComponent<CameraController>().Target = player.gameObject;
 
