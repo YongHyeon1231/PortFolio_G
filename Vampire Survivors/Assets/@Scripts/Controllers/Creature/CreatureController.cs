@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CreatureController : BaseController
 {
+    // 나한테 걸어준 버프 목록
+
     protected float _speed = 1.0f;
 
     public int Hp { get; set; } = 100;

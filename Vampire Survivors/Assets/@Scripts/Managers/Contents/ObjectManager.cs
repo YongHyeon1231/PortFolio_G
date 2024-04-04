@@ -66,12 +66,28 @@ public class ObjectManager
 
             return gc as T;
         }
+        else if (type == typeof(ProjectileController))
+        {
+            GameObject go = Managers.Resource.Instantiate(Define.FIRE_PROJECTILE_PREFAB, pooling: true);
+            go.transform.position = position;
+
+            ProjectileController pc = go.GetOrAddComponent<ProjectileController>();
+            Projectiles.Add(pc);
+            pc.Init();
+
+            return pc as T;
+        }
 
         return null;
     }
 
     public void Despawn<T> (T obj) where T : BaseController
     {
+        if (obj.IsValid() == false)
+        {
+            int a = 3;
+        }
+
         System.Type type = typeof(T);
         
         if (type == typeof(PlayerController))

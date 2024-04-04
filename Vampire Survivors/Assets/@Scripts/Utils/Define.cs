@@ -31,4 +31,5 @@ public static class Define
 
     public const int PLAYER_DATA_ID = 1;
     public const string EXP_GEM_PREFAB = "EXPGem.prefab";
+    public const string FIRE_PROJECTILE_PREFAB = "FireProjectile.prefab";
 }

@@ -6,9 +6,13 @@ using UnityEngine;
 public class PlayerController : CreatureController
 {
     Vector2 _moveDir = Vector2.zero;
-    float _speed = 5.0f;
 
     float EnvCollectDist { get; set; } = 1f;
+
+    [SerializeField]
+    Transform _indicator;
+    [SerializeField]
+    Transform _fireSocket;
 
     public Vector2 MoveDir
     {
@@ -16,9 +20,17 @@ public class PlayerController : CreatureController
         set { _moveDir = value.normalized; }
     }
 
-    void Start()
+    public override bool Init()
     {
+        if (base.Init() == false)
+            return false;
+
+        _speed = 5.0f;
         Managers.Game.onMoveDirChanged += HandleOnMoveDirChanged;
+
+        StartProjectile();
+
+        return true;
     }
 
     void OnDestroy()
@@ -44,6 +56,15 @@ public class PlayerController : CreatureController
 
         Vector3 dir = _moveDir * _speed * Time.deltaTime;
         transform.position += dir;
+
+        if (_moveDir != Vector2.zero)
+        {
+            _indicator.eulerAngles = new Vector3(0, 0, Mathf.Atan2(-dir.x, dir.y) * 180 / Mathf.PI);
+        }
+
+        // 속도조절은 우리가 직접할 것이기 때문에 zero로 해줍니다.
+        // 이걸 안하면 충돌에 따라가지고 살짝 밀리고 이런 경우가 있습니다.
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
     }
 
     void CollectEnv()
@@ -85,4 +106,31 @@ public class PlayerController : CreatureController
         CreatureController cc = attacker as CreatureController;
         cc?.OnDamaged(this, 10000);
     }
+
+    //TEMP
+    #region FireProjectile
+
+    Coroutine _coFireProjectile;
+
+    void StartProjectile()
+    {
+        if (_coFireProjectile != null)
+            StopCoroutine(_coFireProjectile);
+
+        _coFireProjectile = StartCoroutine(CoStartProjectile());
+    }
+
+    IEnumerator CoStartProjectile()
+    {
+        WaitForSeconds wait = new WaitForSeconds(0.5f);
+
+        while (true)
+        {
+            ProjectileController pc = Managers.Object.Spawn<ProjectileController>(_fireSocket.position, 1);
+            pc.SetInfo(1, this, (_fireSocket.position - _indicator.position).normalized);
+
+            yield return wait;
+        }
+    }
+    #endregion
 }
