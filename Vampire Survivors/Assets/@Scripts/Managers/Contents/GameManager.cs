@@ -9,9 +9,34 @@ public class GameManager
 
     #region 재화
     public int Gold { get; set; }
-    public int Gem { get; set; }
+
+    int _gem;
+    public event Action<int> OnGemCountChanged;
+    public int Gem 
+    {
+        get { return _gem; }
+        set
+        {
+            _gem = value;
+            OnGemCountChanged?.Invoke(value);
+        }
+    }
     #endregion
 
+    #region 전투
+    int _killCount;
+    public event Action<int> OnKillCountChanged;
+
+    public int KillCount
+    {
+        get { return _killCount; }
+        set 
+        { 
+            _killCount = value; 
+            OnKillCountChanged?.Invoke(value); 
+        }
+    }
+    #endregion
 
     #region 이동
     Vector2 _moveDir;

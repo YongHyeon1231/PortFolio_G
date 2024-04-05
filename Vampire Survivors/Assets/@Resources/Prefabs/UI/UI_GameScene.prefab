@@ -1112,7 +1112,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.465
+  m_Value: 0.41
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1193,6 +1193,7 @@ GameObject:
   - component: {fileID: 3146652389643943606}
   - component: {fileID: 3146652389643943605}
   - component: {fileID: 3146652389643943604}
+  - component: {fileID: 4939907210522834978}
   m_Layer: 5
   m_Name: UI_GameScene
   m_TagString: Untagged
@@ -1285,6 +1286,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4939907210522834978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3146652389643943603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad81ff32bad9e24d9c4348ccfe13b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _killCountText: {fileID: 3146652389793289182}
+  _gemslider: {fileID: 3146652389620903582}
 --- !u!1 &3146652389741355443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,9 +1869,9 @@ RectTransform:
   m_Father: {fileID: 3146652389580582445}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 147.5, y: -28}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3146652390611948486
