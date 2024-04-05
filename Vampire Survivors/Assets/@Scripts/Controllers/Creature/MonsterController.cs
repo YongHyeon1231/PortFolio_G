@@ -15,7 +15,7 @@ public class MonsterController : CreatureController
             UpdateAnimation();
         }
     }
-    #endregion
+    
 
     protected Animator _animator;
     public virtual void UpdateAnimation()
@@ -49,6 +49,7 @@ public class MonsterController : CreatureController
     protected virtual void UpdateSkill() { }
     protected virtual void UpdateDead() { }
 
+    #endregion
 
     public override bool Init()
     {
