@@ -19,6 +19,29 @@ public class GameScene : MonoBehaviour
 
     SpawningPool _spawningPool;
 
+    Define.StageType _stageType;
+    public Define.StageType StageType
+    {
+        get { return _stageType; }
+        set
+        {
+            _stageType = value;
+
+            if (_spawningPool != null)
+            {
+                switch (value)
+                {
+                    case Define.StageType.Normal:
+                        _spawningPool.Stopped = false;
+                        break;
+                    case Define.StageType.Boss:
+                        _spawningPool.Stopped = true;
+                        break;
+                }
+            }
+        }
+    }
+
     void StartLoaded()
     {
         Managers.Data.Init();
@@ -51,7 +74,7 @@ public class GameScene : MonoBehaviour
 
     #region Action Handler
     int _collectedGemCount = 0;
-    int _remainingTotalGemCount = 2;
+    int _remainingTotalGemCount = 10;
     public void HandleOnGemCountChanged(int gemCount)
     {
         _collectedGemCount++;
@@ -75,6 +98,13 @@ public class GameScene : MonoBehaviour
         if(killCount == 5)
         {
             // BOSS
+            StageType = Define.StageType.Boss;
+
+            Managers.Object.DespawnAllMonsters();
+
+            Vector2 spawnPos = Utils.GenerateMonsterSpawnPosition(Managers.Game.Player.transform.position, 5, 10);
+
+            Managers.Object.Spawn<MonsterController>(spawnPos, Define.BOSS_ID);
         }
     }
 
@@ -84,9 +114,4 @@ public class GameScene : MonoBehaviour
             Managers.Game.OnGemCountChanged -= HandleOnGemCountChanged;
     }
     #endregion
-
-    void Update()
-    {
-        
-    }
 }

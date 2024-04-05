@@ -47,6 +47,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad
+  - m_GUID: 486e7f95d34689848a3520057ca01881
+    m_Address: Boss_01.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 72709f7e6a53a48439d05a7e9e5c6a83, type: 2}
   m_SchemaSet:
