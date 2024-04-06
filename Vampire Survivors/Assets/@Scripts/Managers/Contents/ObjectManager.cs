@@ -12,7 +12,7 @@ public class ObjectManager
     public HashSet<ProjectileController> Projectiles { get; } = new HashSet<ProjectileController>();
     public HashSet<GemController> Gems { get; } = new HashSet<GemController>();
 
-    public T Spawn<T>(Vector3 position, int templateID = 0) where T : BaseController
+    public T Spawn<T>(Vector3 position, int templateID = 0, string prefabNale = "") where T : BaseController
     {
         System.Type type = typeof(T);
 
@@ -92,7 +92,7 @@ public class ObjectManager
 
             return pc as T;
         }
-        else if (typeof(T).IsSubclassOf(typeof(SkillController)))
+        else if (typeof(T).IsSubclassOf(typeof(SkillBase)))
         {
             if (Managers.Data.SkillDic.TryGetValue(templateID, out Data.SkillData skillData) == false)
             {
@@ -103,7 +103,7 @@ public class ObjectManager
             GameObject go = Managers.Resource.Instantiate(skillData.prefab, pooling: true);
             go.transform.position = position;
 
-            T t = go.GetComponent<T>();
+            T t = go.GetOrAddComponent<T>();
             t.Init();
 
             return t;

@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class BossController : MonsterController
 {
+    #region State Pattern
+    Define.CreatureState _bossState = Define.CreatureState.Moving;
+    public override Define.CreatureState CreatureState
+    {
+        get { return _bossState; }
+        set
+        {
+            _bossState = value;
+            UpdateAnimation();
+        }
+    }
+    #endregion
+
     public override bool Init()
     {
         base.Init();
@@ -26,7 +39,6 @@ public class BossController : MonsterController
                 _animator.Play("Moving");
                 break;
             case Define.CreatureState.Skill:
-                // 나중에 Charge도 구분 지어줘야함
                 _animator.Play("Attack");
                 break;
             case Define.CreatureState.Dead:
@@ -35,8 +47,8 @@ public class BossController : MonsterController
         }
     }
 
-    // Boss Collider + Player Coliider
-    float _range = 2.0f;
+    // Boss Collider + Player Collider
+    float _range = 4.0f;
 
     protected override void UpdateMoving()
     {
@@ -46,21 +58,20 @@ public class BossController : MonsterController
 
         Vector3 dir = pc.transform.position - transform.position;
 
-        if(dir.magnitude < _range)
+        if (dir.magnitude < _range)
         {
             CreatureState = Define.CreatureState.Skill;
 
-            // 스킬이 시전되는 시간동안 잠시 기다림
             // _animator.runtimeAnimatorController.animationClips;
             float animLength = 0.41f;
             Wait(animLength);
         }
     }
-    
+
     protected override void UpdateSkill()
     {
         if (_coWait == null)
-            CreatureState =Define.CreatureState.Moving;
+            CreatureState = Define.CreatureState.Moving;
     }
 
     protected override void UpdateDead()
@@ -74,7 +85,6 @@ public class BossController : MonsterController
 
     void Wait(float waitSeconds)
     {
-        // 이미 예약된게 있으면 취소
         if (_coWait != null)
             StopCoroutine(_coWait);
         _coWait = StartCoroutine(CoStartWait(waitSeconds));
@@ -85,6 +95,7 @@ public class BossController : MonsterController
         yield return new WaitForSeconds(waitSeconds);
         _coWait = null;
     }
+
     #endregion
 
     public override void OnDamaged(BaseController attacker, int damage)

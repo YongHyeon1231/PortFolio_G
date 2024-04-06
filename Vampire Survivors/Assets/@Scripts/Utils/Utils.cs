@@ -57,8 +57,8 @@ public class Utils
         float angle = Random.Range(0, 360) * Mathf.Deg2Rad;
         float distance = Random.Range(minDistance, maxDistance);
 
-        float xDist = Mathf.Cos(angle) + distance;
-        float yDist = Mathf.Sin(angle) + distance;
+        float xDist = Mathf.Cos(angle) * distance;
+        float yDist = Mathf.Sin(angle) * distance;
 
         Vector2 spawnPosition = characterPosition + new Vector2(xDist, yDist);
 

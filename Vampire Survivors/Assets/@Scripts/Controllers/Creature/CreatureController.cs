@@ -1,24 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CreatureController : BaseController
 {
-    // 나한테 걸어준 버프 목록
-
     protected float _speed = 1.0f;
 
     public int Hp { get; set; } = 100;
     public int MaxHp { get; set; } = 100;
 
-    void Start()
-    {
-        
-    }
+    public SkillBook Skills { get; protected set; }
 
-    void Update()
+    public override bool Init()
     {
-        
+        base.Init();
+
+        Skills = gameObject.GetOrAddComponent<SkillBook>();
+
+        return true;
     }
 
     public virtual void OnDamaged(BaseController attacker, int damage)
@@ -27,7 +27,7 @@ public class CreatureController : BaseController
             return;
 
         Hp -= damage;
-        if (Hp < 0 )
+        if (Hp <= 0)
         {
             Hp = 0;
             OnDead();

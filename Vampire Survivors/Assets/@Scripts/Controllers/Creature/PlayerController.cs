@@ -14,6 +14,10 @@ public class PlayerController : CreatureController
     [SerializeField]
     Transform _fireSocket;
 
+    public Transform Indicator { get { return _indicator; } }
+    public Vector3 FireSocket { get { return _fireSocket.position; } }
+    public Vector3 ShootDir { get { return (_fireSocket.position - _indicator.position).normalized; } }
+
     public Vector2 MoveDir
     {
         get { return _moveDir; }
@@ -28,8 +32,10 @@ public class PlayerController : CreatureController
         _speed = 5.0f;
         Managers.Game.onMoveDirChanged += HandleOnMoveDirChanged;
 
-        StartProjectile();
-        StartEgoSword();
+        // TODO
+        //Skills.AddSkill<FireballSkill>(transform.position);
+        Skills.AddSkill<FireballSkill>(_indicator.position);
+        Skills.AddSkill<EgoSword>(_indicator.position);
 
         return true;
     }
@@ -106,46 +112,4 @@ public class PlayerController : CreatureController
         CreatureController cc = attacker as CreatureController;
         cc?.OnDamaged(this, 10000);
     }
-
-    //TEMP
-    #region FireProjectile
-
-    Coroutine _coFireProjectile;
-
-    void StartProjectile()
-    {
-        if (_coFireProjectile != null)
-            StopCoroutine(_coFireProjectile);
-
-        _coFireProjectile = StartCoroutine(CoStartProjectile());
-    }
-
-    IEnumerator CoStartProjectile()
-    {
-        WaitForSeconds wait = new WaitForSeconds(0.5f);
-
-        while (true)
-        {
-            ProjectileController pc = Managers.Object.Spawn<ProjectileController>(_fireSocket.position, 1);
-            pc.SetInfo(1, this, (_fireSocket.position - _indicator.position).normalized);
-
-            yield return wait;
-        }
-    }
-    #endregion
-
-    #region EgoSword
-    EgoSwordController _egoSword;
-
-    void StartEgoSword()
-    {
-        if (_egoSword.IsValid())
-            return;
-
-        _egoSword = Managers.Object.Spawn<EgoSwordController>(_indicator.position, Define.EGO_SWORD_ID);
-        _egoSword.transform.SetParent(_indicator);
-
-        _egoSword.ActivateSkill();
-    }
-    #endregion
 }

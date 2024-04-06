@@ -24,9 +24,8 @@ public static class Define
     public enum SkillType
     {
         None,
-        Melee,
-        Projectile,
-        Etc,
+        Sequence,
+        Repeat,
     }
 
     public enum StageType
@@ -52,4 +51,5 @@ public static class Define
     public const string FIRE_PROJECTILE_PREFAB = "FireProjectile.prefab";
 
     public const int EGO_SWORD_ID = 10;
+    public const int FIREBALL_ID = 20;
 }
