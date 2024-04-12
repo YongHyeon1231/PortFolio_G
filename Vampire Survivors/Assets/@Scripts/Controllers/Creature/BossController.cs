@@ -22,8 +22,16 @@ public class BossController : MonsterController
         base.Init();
 
         _animator = GetComponent<Animator>();
-        CreatureState = Define.CreatureState.Moving;
+        
         Hp = 10000;
+
+        CreatureState = Define.CreatureState.Skill;
+
+        Skills.AddSkill<Move>(transform.position);
+        Skills.AddSkill<Dash>(transform.position);
+        Skills.AddSkill<Dash>(transform.position);
+        Skills.AddSkill<Dash>(transform.position);
+        Skills.StartNextSequenceSkill();
 
         return true;
     }
@@ -39,39 +47,12 @@ public class BossController : MonsterController
                 _animator.Play("Moving");
                 break;
             case Define.CreatureState.Skill:
-                _animator.Play("Attack");
+                //_animator.Play("Attack");
                 break;
             case Define.CreatureState.Dead:
                 _animator.Play("Dead");
                 break;
         }
-    }
-
-    // Boss Collider + Player Collider
-    float _range = 4.0f;
-
-    protected override void UpdateMoving()
-    {
-        PlayerController pc = Managers.Object.Player;
-        if (pc.IsValid() == false)
-            return;
-
-        Vector3 dir = pc.transform.position - transform.position;
-
-        if (dir.magnitude < _range)
-        {
-            CreatureState = Define.CreatureState.Skill;
-
-            // _animator.runtimeAnimatorController.animationClips;
-            float animLength = 0.41f;
-            Wait(animLength);
-        }
-    }
-
-    protected override void UpdateSkill()
-    {
-        if (_coWait == null)
-            CreatureState = Define.CreatureState.Moving;
     }
 
     protected override void UpdateDead()

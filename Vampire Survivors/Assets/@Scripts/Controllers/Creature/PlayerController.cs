@@ -110,6 +110,6 @@ public class PlayerController : CreatureController
 
         // TEMP 풀링을 위해 간단하게 넣어놨습니다.
         CreatureController cc = attacker as CreatureController;
-        cc?.OnDamaged(this, 10000);
+        cc?.OnDamaged(this, 100);
     }
 }
